@@ -6,39 +6,27 @@
  */
 int _printf(const char *format, ...)
 {
-	int count = 0;
 	va_list args;
 
 	va_start(args, format);
 
-	if (format == NULL)
-		return (-1);
-	while (*format)
+	while (*format != '\0')
 	{
-		if (*format != '%')
+		if (*format == '%')
 		{
-			write(1, format, 1);
-			count++;
+			format++;
+			switch (*format)
+			{
+				case 'c' :
+					putchar('(');
+					putchar(va_arg(args, int));
+					putchar(')');
+			}
 		}
-		else if (*format == 'c')
-		{
-			char c = va_arg(args, int)
-				write(1, &c, 1);
-			count++;
-		}
-		else if (*format == 's')
-		{
-			char *str = va_arg(args, char*);
-			int str_len = 0;
-
-			while (str[str_len] != '\0')
-				str_len++;
-			write(1, str, str_len);
-			count += str_len;
-		}
+		else
+			putchar(*format);
+		format++;
 	}
-	format++;
-}
-va_end(args);
-return (count);
+	va_end(args);
+	return (0);
 }
