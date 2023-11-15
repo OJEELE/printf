@@ -47,6 +47,7 @@ int print_int(va_list arg)
 	int num, last = n % 10, digit, exp = 1;
 
 	int i = 1;
+
 	n = n / 10;
 	num = n;
 
@@ -57,6 +58,7 @@ int print_int(va_list arg)
 		last = -last;
 		n = -n;
 		i++;
+
 	}
 	if (num > 10)
 	{
@@ -79,28 +81,16 @@ int print_int(va_list arg)
 	return (1);
 }
 /**
- * Print_b - function converts to binary
- * @arg: argument to be converted
- * Return: integer
+ *_strlen - function returns length of a string
+ *@str: string to be pprinted
+ *Return: int
  */
-int print_b(va_list char)
+int _strlen(char *str)
 {
-	int flag = 0, count = 0, i;
-	int a = 1, b;
-	unsigned int num = va_arg(char, unsigned int);
+	int i;
 
-	unsigned int p;
-
-	for (i = 0; i < 32; i++)
+	for (i = 0; str[i], i++)
 	{
-		p = ((a < (32 - i) & num);
-				if (p >> (32 - i))
-				flag = 1;				flag = 1;
-				if (flag)
-				{
-				b = p >> (31 - i);
-				_putchar( b + 48);
-				count++;
-				}
-				}
-
+		return (i);
+	}
+}

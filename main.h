@@ -20,4 +20,8 @@ int _printf(const char *format, ...);
 int _putchar(va_list);
 int _putstr(va_list);
 int (*f_caller(char check))(va_list);
+int print_int(va_list);
+int print_37(void);
+int print_bin(va_list);
+int print_dec(va_list;
 #endif/* MAIN_H */

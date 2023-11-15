@@ -8,7 +8,12 @@ int (*f_caller(char check))(va_list)
 {
 	int idx = 0;
 
-	f_ch fun_arr[] = {{'c', _putchar}, {'s', _putstr}, {'\0', NULL}};
+	f_ch fun_arr[] = {
+		{'c', _putchar}, 
+		{'s', _putstr},
+		{'d', print_d}, 
+		{'i', print_int}, 
+		{'\0', NULL}};
 
 	while (fun_arr[idx].specifier)
 	{
