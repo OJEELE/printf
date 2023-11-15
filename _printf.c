@@ -6,27 +6,31 @@
  */
 int _printf(const char *format, ...)
 {
-	va_list args;
+	int len, idx = 0;
+	char check;
 
-	va_start(args, format);
-
-	while (*format != '\0')
+	va_list arg;
+	va_start(arg, format);
+	
+	if (format == NULL)
+		return (1);
+	for (; format[idx] != '\0'; idx++)
 	{
-		if (*format == '%')
+		if (format[idx] == '%')
 		{
-			format++;
-			switch (*format)
+			idx++;
+			check = format[idx];
+			if (check == 'c' || check == 's')
 			{
-				case 'c' :
-					putchar('(');
-					putchar(va_arg(args, int));
-					putchar(')');
+				len += (f_caller(check))(arg);
 			}
 		}
 		else
-			putchar(*format);
-		format++;
+		{
+			write(1, &format[idx], 1);
+			len++;
+		}
 	}
-	va_end(args);
-	return (0);
+	va_end(arg);
+	return (len);
 }
