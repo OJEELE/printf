@@ -6,7 +6,7 @@
  */
 int _printf(const char * const format, ...)
 {
-	convert_match m[] = {
+	f_ch k[] = {
 		{"%s", printf_string}, {"%c", printf_char},
 		{"%%", printf_37},
 		{"%i", printf_int}, {"%d", printf_dec}, {"%r", printf_srev},
@@ -28,9 +28,9 @@ Here:
 		j = 13;
 		while (j >= 0)
 		{
-			if (m[j].id[0] == format[i] && m[j].id[1] == format[i + 1])
+			if (k[j].id[0] == format[i] && k[j].id[1] == format[i + 1])
 			{
-				len += m[j].f(args);
+				len += k[j].f(args);
 				i = i + 2;
 				goto Here;
 			}

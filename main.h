@@ -1,6 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 #include <stdlib.h>
+#include <ctype.h>
 #include <stdarg.h>
 #include <limits.h>
 #include <string.h>
@@ -14,6 +15,22 @@
 #define FALSE !TRUE
 #define LOWHEX 0
 #define UPHEX 1
+#define UNUSED(x) (void)(x)
+/* FLAGS */
+#define F_MINUS 1
+#define F_PLUS 2
+#define F_ZERO 4
+#define F_HASH 8
+#define F_SPACE 16
+
+/* SIZES */
+#define S_LONG 2
+#define S_SHORT 1
+
+int get_flag(const char *format, int *i);
+int get_width(const char *format, int *i, va_list list);
+int get_precision(const char *format, int *i, va_list list);
+int get_size(const char *format, int *i);
 /**
  * struct format - match the conversion specifiers for printf
  * @id: type char pointer of the specifier i.e (l, h) for (d, i, u, o, x, X)
@@ -25,7 +42,7 @@ typedef struct format
 {
 	char *id;
 	int (*f)();
-} convert_match;
+} f_ch;
 
 int printf_pointer(va_list val);
 int printf_hex_aux(unsigned long int num);
@@ -50,4 +67,5 @@ int printf_char(va_list val);
 int printf_string(va_list val);
 int _putchar(char c);
 int _printf(const char *format, ...);
+int is_digit(char);
 #endif/* MAIN_H */
